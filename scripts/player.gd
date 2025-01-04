@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var speed = 200
+var speed = 100
 var gravity = 1000
-var jump_velocity = -300
+var jump_velocity = -260
 var jump_count = 0
 var max_jump = 2
 
@@ -14,6 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+var temp = 0
 func _physics_process(delta: float) -> void:
 	# add the gravity
 	if not is_on_floor():
@@ -31,8 +32,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity
 			jump_count = 1
 		elif jump_count < max_jump:
-			velocity.y = jump_velocity
+			velocity.y = jump_velocity + 50
 			jump_count += 1
+	
+	if Input.is_action_just_released("jump"):
+		if jump_count < max_jump:
+			velocity.y = 0
 	
 	# get direction: (-1, 0, 1)
 	var direction = Input.get_axis("left", "right")
