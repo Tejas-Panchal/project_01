@@ -32,8 +32,10 @@ sources/0 = SubResource("TileSetAtlasSource_dywgn")
 position = Vector2(0, -14)
 
 [node name="World TileMap" type="TileMap" parent="."]
+position = Vector2(1, 1)
 tile_set = SubResource("TileSet_whgto")
 format = 2
+layer_0/tile_data = PackedInt32Array(-65520, 0, 0)
 
 [node name="Layer1" type="TileMapLayer" parent="World TileMap"]
 use_parent_material = true

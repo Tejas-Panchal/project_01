@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 100
-var gravity = 1000
+var gravity = 500
 var jump_velocity = -260
 var jump_count = 0
 var max_jump = 2
@@ -30,10 +30,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity
+			body.play("jump")
 			jump_count = 1
 		elif jump_count < max_jump:
 			velocity.y = jump_velocity + 50
+			body.play("jump")
 			jump_count += 1
+	
+	if velocity.y > 0:
+		body.play("fall")		
 	
 	if Input.is_action_just_released("jump"):
 		if jump_count < max_jump:
@@ -49,17 +54,17 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	# facing direction
-	if direction > 0:
-		body.flip_h = false
-	else:
+	
+	if direction == -1:
 		body.flip_h = true
+	elif direction == 1:
+		body.flip_h = false
 	
 	# play animation
 	if is_on_floor():
 		if direction == 0:
 			body.play("idle")
-		else:
+		elif velocity.y == 0:
 			body.play("run")
-	else:
-		body.play("jump")
+	
 	move_and_slide()
