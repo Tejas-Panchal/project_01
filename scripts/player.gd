@@ -11,7 +11,7 @@ var max_jump = 2
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 var temp = 0
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		if direction == 0:
 			body.play("idle")
 		else:
-			body.play("walk")
+			body.play("run")
 	else:
 		body.play("jump")
 	move_and_slide()
