@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfjrqh152wbum"]
+
+[ext_resource type="Texture2D" uid="uid://cdo0dcbdcpitd" path="res://assets/levels_number/level_01.png" id="1_flf0q"]
+[ext_resource type="Script" path="res://scenes/levels.gd" id="1_tywf1"]
+[ext_resource type="Script" path="res://scenes/parallax_background.gd" id="2_5ycpy"]
+[ext_resource type="Texture2D" uid="uid://cmxoxb3ap06dw" path="res://assets/levels_number/level_02.png" id="2_drrwg"]
+[ext_resource type="Texture2D" uid="uid://dpwo0opeqwomo" path="res://assets/back_ground.png" id="2_jsvo2"]
+
+[node name="levels" type="Node2D"]
+script = ExtResource("1_tywf1")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_5ycpy")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="BackGround" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(576, 324)
+scale = Vector2(3.4184, 3.68182)
+texture = ExtResource("2_jsvo2")
+
+[node name="level01" type="Button" parent="."]
+offset_left = 34.0
+offset_top = 28.0
+offset_right = 105.0
+offset_bottom = 96.0
+icon = ExtResource("1_flf0q")
+flat = true
+expand_icon = true
+
+[node name="level02" type="Button" parent="."]
+offset_left = 121.0
+offset_top = 29.0
+offset_right = 192.0
+offset_bottom = 97.0
+icon = ExtResource("2_drrwg")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="level01" to="." method="_on_level_01_pressed"]
+[connection signal="pressed" from="level02" to="." method="_on_level_02_pressed"]
