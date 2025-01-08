@@ -14,37 +14,40 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-var temp = 0
 func _physics_process(delta: float) -> void:
-	# add the gravity
+	handle_gravity(delta)
+	handle_jump()
+	handle_movement_and_animation()
+	move_and_slide()
+
+func handle_gravity(delta) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
 		jump_count = 0
-	
-	# handle wall jump
+
+func handle_jump() -> void:
 	if is_on_wall():
 		jump_count = 1
 	
-	# handle jump
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity
 			body.play("jump")
 			jump_count = 1
 		elif jump_count < max_jump:
-			velocity.y = jump_velocity + 50
+			velocity.y = jump_velocity
 			body.play("jump")
 			jump_count += 1
 	
 	if velocity.y > 0:
-		body.play("fall")		
+		body.play("fall")
 	
 	if Input.is_action_just_released("jump"):
-		if jump_count < max_jump:
+		if velocity.y < 0:
 			velocity.y = 0
-	
-	# get direction: (-1, 0, 1)
+
+func handle_movement_and_animation() -> void:
 	var direction = Input.get_axis("left", "right")
 	
 	# movement
@@ -54,7 +57,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	# facing direction
-	
 	if direction == -1:
 		body.flip_h = true
 	elif direction == 1:
@@ -66,5 +68,3 @@ func _physics_process(delta: float) -> void:
 			body.play("idle")
 		elif velocity.y == 0:
 			body.play("run")
-	
-	move_and_slide()
