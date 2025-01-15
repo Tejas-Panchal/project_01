@@ -5,6 +5,13 @@ var gravity = 700
 var jump_velocity = -260
 var jump_count = 0
 var max_jump = 2
+var dash_speed = 4*speed
+var dash_duration = 0.2
+var dash_cooldown = 1.0
+var is_dashing = false
+var dash_time = 0.0
+var dash_direction = Vector2.ZERO
+var can_dash = true
 
 @onready var body: AnimatedSprite2D = $Body
 
@@ -15,10 +22,16 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	handle_gravity(delta)
-	handle_jump()
-	handle_movement_and_animation()
-	move_and_slide()
+	if is_dashing:
+		perform_dash(delta)
+	else:
+		handle_gravity(delta)
+		handle_jump()
+		handle_movement_and_animation()
+		move_and_slide()
+	
+	if Input.is_action_just_pressed("dash") and can_dash:
+		start_dash()
 
 func handle_gravity(delta) -> void:
 	if not is_on_floor():
@@ -68,3 +81,26 @@ func handle_movement_and_animation() -> void:
 			body.play("idle")
 		elif velocity.y == 0:
 			body.play("run")
+
+func start_dash() -> void:
+	is_dashing = true
+	dash_time = 0.0
+	dash_direction = Vector2.ZERO
+	
+	if velocity.x !=0:
+		dash_direction = velocity.normalized()
+	else:
+		dash_direction = Vector2.RIGHT if body.flip_h == false else Vector2.LEFT
+	
+	velocity.x = dash_direction.x * dash_speed
+	can_dash = false
+
+func perform_dash(delta: float) -> void:
+	dash_time += delta
+	if dash_time < dash_duration:
+		move_and_slide()
+	else:
+		is_dashing = false
+		velocity.x = 0
+		await get_tree().create_timer(dash_cooldown).timeout
+		can_dash = true
