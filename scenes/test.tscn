@@ -25,6 +25,7 @@ sources/0 = SubResource("TileSetAtlasSource_hbkb4")
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_tmf73")]
+position = Vector2(4, -26)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mm5fn")

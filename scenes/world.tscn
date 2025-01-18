@@ -29,7 +29,7 @@ sources/0 = SubResource("TileSetAtlasSource_dywgn")
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_1idsy")]
-position = Vector2(0, -14)
+position = Vector2(1, -41)
 
 [node name="World TileMap" type="TileMap" parent="."]
 position = Vector2(1, 1)
