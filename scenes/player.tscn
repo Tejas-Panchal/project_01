@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cv5xk072k5uk4" path="res://assets/idle/char_idle___2.png" id="4_ugwev"]
 [ext_resource type="Texture2D" uid="uid://brbip82vwh5ow" path="res://assets/idle/char_idle___3.png" id="5_5ke8n"]
 [ext_resource type="Texture2D" uid="uid://ibxcnimv1g4r" path="res://assets/idle/char_idle___4.png" id="6_nh58s"]
+[ext_resource type="Texture2D" uid="uid://kt18ohw1kw81" path="res://assets/jump/char_jump_1.png" id="7_eimxi"]
+[ext_resource type="Texture2D" uid="uid://c7kudcb1id4x5" path="res://assets/jump/char_jump_2.png" id="8_ll1ik"]
 [ext_resource type="Texture2D" uid="uid://ckjln3go8i3p6" path="res://assets/run/char_run___1.png" id="9_obeu1"]
-[ext_resource type="Texture2D" uid="uid://6bo58b6i0ldw" path="res://assets/jump/jump1.png" id="9_yu8eu"]
 [ext_resource type="Texture2D" uid="uid://bvdy656mnsoum" path="res://assets/run/char_run___2.png" id="10_7gg8h"]
-[ext_resource type="Texture2D" uid="uid://b6t214bupxpgj" path="res://assets/jump/jump2.png" id="10_frow7"]
 [ext_resource type="Texture2D" uid="uid://b0fk58brpg03o" path="res://assets/run/char_run___3.png" id="11_yibq2"]
 [ext_resource type="Texture2D" uid="uid://s263eff0wgw2" path="res://assets/run/char_run___4.png" id="12_dxxup"]
 [ext_resource type="Texture2D" uid="uid://tos7nhxnfx2d" path="res://assets/run/char_run___5.png" id="13_6yscf"]
@@ -46,10 +46,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_yu8eu")
+"texture": ExtResource("7_eimxi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_frow7")
+"texture": ExtResource("8_ll1ik")
 }],
 "loop": false,
 "name": &"jump",
@@ -96,10 +96,9 @@ script = ExtResource("2_w5tft")
 position = Vector2(-1, -5)
 scale = Vector2(1.01563, 1)
 sprite_frames = SubResource("SpriteFrames_51xth")
-animation = &"run"
+animation = &"jump"
 autoplay = "idle"
-frame = 3
-frame_progress = 0.623382
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
