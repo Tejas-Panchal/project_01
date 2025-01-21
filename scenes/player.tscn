@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7iesmctuqlt0"]
+[gd_scene load_steps=23 format=3 uid="uid://c7iesmctuqlt0"]
 
-[ext_resource type="Texture2D" uid="uid://b67mu3nsetdn7" path="res://assets/fall/fall.png" id="2_fq3g5"]
+[ext_resource type="Texture2D" uid="uid://d0orfn6gmydla" path="res://assets/fall/char_fall_.png" id="2_ekst3"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_w5tft"]
 [ext_resource type="Texture2D" uid="uid://d02o80vhfgmfc" path="res://assets/idle/char_idle___1.png" id="3_w82ip"]
 [ext_resource type="Texture2D" uid="uid://cv5xk072k5uk4" path="res://assets/idle/char_idle___2.png" id="4_ugwev"]
@@ -16,12 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://bjpaqtdl6fdts" path="res://assets/run/char_run___6.png" id="14_po7ub"]
 [ext_resource type="Texture2D" uid="uid://bdqw65t611yul" path="res://assets/run/char_run___7.png" id="15_4uv6w"]
 [ext_resource type="Texture2D" uid="uid://dvaserqv0y0ga" path="res://assets/run/char_run___8.png" id="16_oyhju"]
+[ext_resource type="Texture2D" uid="uid://crrobkusth2n8" path="res://assets/shift/char_shift_1.png" id="17_te7le"]
+[ext_resource type="Texture2D" uid="uid://c2u2yil741tp8" path="res://assets/shift/char_shift_2.png" id="18_78n11"]
+[ext_resource type="Texture2D" uid="uid://c3cxsixrscia5" path="res://assets/shift/char_shift_3.png" id="19_pvb4m"]
+[ext_resource type="Texture2D" uid="uid://b5ostffwu27dr" path="res://assets/shift/char_shift_4.png" id="20_2ut2l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_51xth"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fq3g5")
+"texture": ExtResource("2_ekst3")
 }],
 "loop": false,
 "name": &"fall",
@@ -83,6 +87,23 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_te7le")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_78n11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pvb4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2ut2l")
+}],
+"loop": false,
+"name": &"shift",
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgwg"]
@@ -93,12 +114,11 @@ height = 76.0
 script = ExtResource("2_w5tft")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -5)
+position = Vector2(-3, -4)
 scale = Vector2(1.01563, 1)
 sprite_frames = SubResource("SpriteFrames_51xth")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 150
+var speed = 200
 var gravity = 700
 var jump_velocity = -260
 var jump_count = 0
@@ -91,7 +91,7 @@ func start_dash() -> void:
 		dash_direction = velocity.normalized()
 	else:
 		dash_direction = Vector2.RIGHT if body.flip_h == false else Vector2.LEFT
-	
+	body.play("shift")
 	velocity.x = dash_direction.x * dash_speed
 	can_dash = false
 
