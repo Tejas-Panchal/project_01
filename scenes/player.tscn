@@ -98,32 +98,32 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("19_pvb4m")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("20_2ut2l")
 }],
 "loop": false,
 "name": &"shift",
-"speed": 15.0
+"speed": 20.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgwg"]
-radius = 19.0
-height = 76.0
+radius = 13.3333
+height = 80.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2_w5tft")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -4)
-scale = Vector2(1.01563, 1)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_51xth")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("CapsuleShape2D_tsgwg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0

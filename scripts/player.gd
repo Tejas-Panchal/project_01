@@ -1,17 +1,19 @@
 extends CharacterBody2D
 
-var speed = 200
+var speed = 100
 var gravity = 700
+var low_gravity = 400
 var jump_velocity = -260
 var jump_count = 0
 var max_jump = 2
-var dash_speed = 4*speed
+var dash_speed = 330
 var dash_duration = 0.2
 var dash_cooldown = 1.0
 var is_dashing = false
 var dash_time = 0.0
 var dash_direction = Vector2.ZERO
 var can_dash = true
+var level = "normal"
 
 @onready var body: AnimatedSprite2D = $Body
 
@@ -25,7 +27,10 @@ func _physics_process(delta: float) -> void:
 	if is_dashing:
 		perform_dash(delta)
 	else:
-		handle_gravity(delta)
+		if level == "normal":
+			handle_gravity(delta, gravity)
+		else:
+			handle_gravity(delta, low_gravity)
 		handle_jump()
 		handle_movement_and_animation()
 		move_and_slide()
@@ -33,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and can_dash:
 		start_dash()
 
-func handle_gravity(delta) -> void:
+func handle_gravity(delta, gravity) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
@@ -93,6 +98,7 @@ func start_dash() -> void:
 		dash_direction = Vector2.RIGHT if body.flip_h == false else Vector2.LEFT
 	body.play("shift")
 	velocity.x = dash_direction.x * dash_speed
+	velocity.y = 0
 	can_dash = false
 
 func perform_dash(delta: float) -> void:
