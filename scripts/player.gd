@@ -16,6 +16,8 @@ var can_dash = true
 var level = "normal"
 
 @onready var body: AnimatedSprite2D = $Body
+@onready var left_arrow: Button = $"Camera2D/HFlowContainer/Left Arrow"
+@onready var right_arrow: Button = $"Camera2D/HFlowContainer/Right Arrow"
 
 func _ready() -> void:
 	pass
@@ -38,9 +40,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and can_dash:
 		start_dash()
 
-func handle_gravity(delta, gravity) -> void:
+func handle_gravity(delta, grav) -> void:
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += grav * delta
 	else:
 		jump_count = 0
 
@@ -110,3 +112,10 @@ func perform_dash(delta: float) -> void:
 		velocity.x = 0
 		await get_tree().create_timer(dash_cooldown).timeout
 		can_dash = true
+
+
+func _on_left_arrow_pressed() -> void: Input.action_press("left")
+func _on_right_arrow_pressed() -> void: Input.action_press("right")
+
+func _on_left_arrow_relaese() -> void: Input.action_release("left")
+func _on_right_arrow_relaese() -> void: Input.action_release("right")
